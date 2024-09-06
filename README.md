@@ -26,7 +26,7 @@
 
 ## 🛠 Running Sparkle Locally
 
-This project is not production-ready, but you can easily run it locally. A feature-rich version is available, but a refactor is on the way in the `branch/refactor`.
+This project is not production-ready, but you can easily run it locally. 
 
 ### Running Sparkle via Docker (Recommended)
 ```bash
