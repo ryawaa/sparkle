@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from app.core.config import settings
 from app.api.v1.routes import stock
 from app.api.v1.routes import news
+from app.api.v1.routes import market
 from app.ws.routes import trades
 app = FastAPI()
 
@@ -11,6 +12,7 @@ app = FastAPI()
 async def startup_event():
     app.include_router(stock.router, prefix="/api/v1")
     app.include_router(news.router, prefix="/api/v1")
+    app.include_router(market.router, prefix="/api/v1")
     app.include_router(trades.router, prefix="/ws")
     pass
 

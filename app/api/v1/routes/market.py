@@ -5,15 +5,15 @@ from app.core.websocket import start_finnhub_websocket
 
 router = APIRouter()
 
-@router.get("/market-status")
+@router.get("/marketnews")
 async def market_news():
     """
     API to get latest market news.
     """
     params = {
         "token": settings.FINNHUB_API_KEY,
-        "exchange": "US"
+        "category": "general"
     }
 
-    response = requests.get("https://finnhub.io/api/v1/market-status", params=params)
+    response = requests.get("https://finnhub.io/api/v1/news", params=params)
     return response.json()
