@@ -33,3 +33,16 @@ async def quote(symbol: str):
 
     response = requests.get("https://finnhub.io/api/v1/quote", params=params)
     return response.json()
+
+@router.get("/profile") 
+async def profile(symbol: str):
+    """
+    API to get company profile.
+    """
+    params = {
+        "token": settings.FINNHUB_API_KEY,
+        "symbol": symbol
+    }
+
+    response = requests.get("https://finnhub.io/api/v1/stock/profile2", params=params)
+    return response.json()
