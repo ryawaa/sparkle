@@ -7,3 +7,10 @@ services:
     environment: # use .env
       - FINNHUB_API_KEY=${FINNHUB_API_KEY}
     restart: unless-stopped
+    networks:
+      - yanacloud
+
+networks:
+  yanacloud:
+    external: true
+    name: yanacloud
