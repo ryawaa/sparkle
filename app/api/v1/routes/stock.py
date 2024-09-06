@@ -20,3 +20,16 @@ async def lookup(query: str, exchange: str | None = None):
 
     response = requests.get("https://finnhub.io/api/v1/search", params=params)
     return response.json()
+
+@router.get("/quote")
+async def quote(symbol: str):
+    """
+    API to get a stock quote.
+    """
+    params = {
+        "token": settings.FINNHUB_API_KEY,
+        "symbol": symbol
+    }
+
+    response = requests.get("https://finnhub.io/api/v1/quote", params=params)
+    return response.json()
