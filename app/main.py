@@ -4,12 +4,12 @@ from app.api.v1.routes import stock
 from app.ws.routes import trades
 app = FastAPI()
 
-app.include_router(stock.router, prefix="/api/v1")
-app.include_router(trades.router, prefix="/ws")
+
 
 @app.on_event("startup")
 async def startup_event():
-    # Code to run on app startup, e.g., connect to WebSocket
+    app.include_router(stock.router, prefix="/api/v1")
+    app.include_router(trades.router, prefix="/ws")
     pass
 
 @app.on_event("shutdown")
