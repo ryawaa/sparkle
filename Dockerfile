@@ -2,10 +2,10 @@
 # base layer
 FROM python:3.12-alpine as base
 
-ARG DEV=false
+ENV VIRTUAL_ENV=/sparkle/.venv \
+    PATH="/sparkle/.venv/bin:$PATH"
 
-ENV VIRTUAL_ENV=/app/.venv \
-    PATH="/app/.venv/bin:$PATH"
+RUN python -m venv $VIRTUAL_ENV
 
 RUN apk update && \
     apk add libpq
@@ -26,7 +26,7 @@ RUN pip install poetry==1.8.3
 
 # Install the app
 COPY pyproject.toml poetry.lock ./
-RUN poetry install dev --no-root && rm -rf $POETRY_CACHE_DIR; 
+RUN poetry install --no-root && rm -rf $POETRY_CACHE_DIR; 
 
 FROM base as runtime
 
@@ -34,7 +34,5 @@ COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 
 COPY app ./app
 
-WORKDIR /sparkle/app
-
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 

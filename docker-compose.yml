@@ -1,7 +1,6 @@
 services:
   sparkle:
     container_name: sparkle
-    image: sparkle:lastest
     build:
       context: .
       dockerfile: Dockerfile
