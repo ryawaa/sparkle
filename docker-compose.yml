@@ -1,0 +1,10 @@
+services:
+  sparkle:
+    container_name: sparkle
+    image: sparkle:lastest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment: # use .env
+      - FINNHUB_API_KEY=${FINNHUB_API_KEY}
+    restart: unless-stopped
