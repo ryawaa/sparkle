@@ -1,15 +1,22 @@
-from typing import Union
-
 from fastapi import FastAPI
-
+from app.core.config import settings
+from app.api.v1.routes import stock
+from app.ws.routes import trades
 app = FastAPI()
 
+app.include_router(stock.router, prefix="/api/v1")
+app.include_router(trades.router, prefix="/ws")
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+@app.on_event("startup")
+async def startup_event():
+    # Code to run on app startup, e.g., connect to WebSocket
+    pass
 
+@app.on_event("shutdown")
+async def shutdown_event():
+    # Code to clean up on shutdown
+    pass
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
