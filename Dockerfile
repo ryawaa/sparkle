@@ -26,11 +26,7 @@ RUN pip install poetry==1.8.3
 
 # Install the app
 COPY pyproject.toml poetry.lock ./
-RUN if [ $DEV ]; then \
-    poetry install --with dev --no-root && rm -rf $POETRY_CACHE_DIR; \
-    else \
-    poetry install --without dev --no-root && rm -rf $POETRY_CACHE_DIR; \
-    fi
+RUN poetry install dev --no-root && rm -rf $POETRY_CACHE_DIR; 
 
 FROM base as runtime
 

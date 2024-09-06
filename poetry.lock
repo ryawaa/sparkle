@@ -246,6 +246,20 @@ uvicorn = {version = ">=0.15.0", extras = ["standard"]}
 standard = ["uvicorn[standard] (>=0.15.0)"]
 
 [[package]]
+name = "finnhub-python"
+version = "2.4.20"
+description = "Finnhub API"
+optional = false
+python-versions = "*"
+files = [
+    {file = "finnhub-python-2.4.20.tar.gz", hash = "sha256:b207fa936080d489b5045caae2e602ba34d0e26313310ff3d8d505942f24bbce"},
+    {file = "finnhub_python-2.4.20-py3-none-any.whl", hash = "sha256:1c944e7d59d3f9cc8dcdc86c08b19a7a2c77b3d1f57d3c5df49f4d1469e9d0b4"},
+]
+
+[package.dependencies]
+requests = ">=2.22.0"
+
+[[package]]
 name = "h11"
 version = "0.14.0"
 description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
@@ -1122,4 +1136,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "0eafec6589aee7b85b4bf3d6069d30408fa8ea283a3647f78849259a4718bcca"
+content-hash = "73bcb98bfa117c5c63b3a893f402d0f492c7ce531d7c558328c05c700eaf4a60"
